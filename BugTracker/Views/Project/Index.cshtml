@@ -1,0 +1,54 @@
+﻿@model List<BugTracker.Models.Project>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="create-container">
+    <a asp-controller="Project" asp-action="Create" class="create-btn">
+        <img class="small-img" src="~/icons/white-add.png" />    
+        Add Project
+    </a>
+    <div class="form-container">
+        <form class="frm hidden" asp-controller="Project" asp-action="Create" method="POST">
+            <div class="form-group">
+                <label asp-for="@Model.Title"></label>
+                <input class="form-control" asp-for="@Model.Title" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Description"></label>
+                <textarea class="form-control" asp-for="@Model.Description"></textarea>
+
+            </div>
+
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+</div>
+<div class="project-container">
+    @foreach (var project in Model)
+    {
+        <div class="project-card">
+            <div class="title-container">
+                <a asp-page="/Details/@project.Id" class="proj-title">@project.Title</a>
+                <p class="menu">...</p>
+            </div>
+            <a asp-page="/Details/@project.Id" class="proj-info">@project.Description</a>
+
+            <div class="date-count-container">
+                <a asp-page="/Details/@project.Id" class="proj-info">Create Date:</a>
+                <a asp-page="/Details/@project.Id" class="proj-info">@project.CreateDate.ToString("MM/dd/yy")</a>
+                &nbsp
+                &nbsp
+                <a asp-page="/Details/@project.Id" class="proj-info">Work Items:</a>
+                <a asp-page="/Details/@project.Id" class="proj-info">@project.WorkItems.Count</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts{ 
+    <script type="text/javascript" src="~/js/menu.js"></script>
+}

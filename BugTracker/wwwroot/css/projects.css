@@ -1,0 +1,78 @@
+﻿.project-container{
+    display:flex;
+    flex-direction:column;
+    width:95%;
+}
+
+.project-card {
+    border: 1px solid #adadad;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px #adadad;
+    background-color: #ffffff;
+}
+
+a.proj-title {
+    font-size: 20px;
+    text-decoration: none;
+    color: #0097e6;
+}
+
+a.proj-info{
+    font-size:14px;
+    text-decoration:none;
+    color:black;
+}
+
+.date-count-container{
+    display:flex;
+    flex-direction:row;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+
+.create-container{
+    display:flex;
+    margin:10px;
+    width:95%;
+}
+
+a.create-btn {
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #adadad;
+    background-color: #44bd32;
+    font-size:17px;
+    color: ghostwhite;
+    
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.title-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:0;
+    padding:0;
+}
+
+.menu {
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+    margin-right: 30px;
+    cursor: pointer;
+}

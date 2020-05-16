@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BugTracker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/projects.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="main-bar-container" style="width:100%">
+        <div class="header">
+            <img class="logo" src="~/icons/logo.png" />
+            <h4 class="site-title">Bug Tracker</h4>
+
+        </div>
+        <div class="search">
+            <input class="search-input" type="text" placeholder="search" />
+            <a class="search-link" href="#" style="border:1px solid gray;">
+                <img src="~/icons/search.png" />
+            </a>
+        </div>
+    </div>
+    <div class="main-content-container">
+        <div class="nav-bar-container">
+            <ul class="navigation">
+                @*<li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active-item" : "")">
+                        <a class="nav-link-item" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img class="nav-icon" src="~/icons/home.png" />
+                        </a>
+                    </li>*@
+                <li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Project" ? "active-item" : "")">
+                    <a class="nav-link-item" asp-area="" asp-controller="Project" asp-action="Index">
+                        <img class="nav-icon proj-icon" src="~/icons/projects.png" />
+                        Projects
+                    </a>
+                </li>
+                <li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Tracking" ? "active-item" : "")">
+                    <a class="nav-link-item" asp-area="" asp-controller="Tracking" asp-action="Index">
+                        <img class="nav-icon" src="~/icons/tracking.png" />
+                        Tracking
+                    </a>
+                </li>
+                <li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Viewed" ? "active-item" : "")">
+                    <a class="nav-link-item" asp-area="" asp-controller="Viewed" asp-action="Index">
+                        <img class="nav-icon" src="~/icons/previous.png" />
+                        Previous
+                    </a>
+                </li>
+            </ul>
+            
+            <a class="settings-link" asp-area="" asp-controller="Settings" asp-action="Index">
+                <img class="nav-icon setting-icon" src="~/icons/settings.png" />
+                Settings
+            </a>
+        </div>
+        <div class="body-render-container">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+
+
+    @*<footer class="">
+            <div class="">
+                &copy; 2020 - BugTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
