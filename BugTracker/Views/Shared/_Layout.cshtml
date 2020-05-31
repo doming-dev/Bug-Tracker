@@ -15,21 +15,10 @@
             <h4 class="site-title">Bug Tracker</h4>
 
         </div>
-        <div class="search">
-            <input class="search-input" type="text" placeholder="search" />
-            <a class="search-link" href="#" style="border:1px solid gray;">
-                <img src="~/icons/search.png" />
-            </a>
-        </div>
     </div>
     <div class="main-content-container">
         <div class="nav-bar-container">
             <ul class="navigation">
-                @*<li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active-item" : "")">
-                        <a class="nav-link-item" asp-area="" asp-controller="Home" asp-action="Index">
-                            <img class="nav-icon" src="~/icons/home.png" />
-                        </a>
-                    </li>*@
                 <li class="nav-list-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Project" ? "active-item" : "")">
                     <a class="nav-link-item" asp-area="" asp-controller="Project" asp-action="Index">
                         <img class="nav-icon proj-icon" src="~/icons/projects.png" />
@@ -62,16 +51,11 @@
         </div>
     </div>
 
-
-
-    @*<footer class="">
-            <div class="">
-                &copy; 2020 - BugTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/projects.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

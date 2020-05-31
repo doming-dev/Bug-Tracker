@@ -1,54 +1,50 @@
-﻿@model List<BugTracker.Models.Project>
+﻿@model BugTracker.ViewModel.ProjectsViewModel
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <br />
+
 <div class="create-container">
-    <a asp-controller="Project" asp-action="Create" class="create-btn">
-        <img class="small-img" src="~/icons/white-add.png" />    
-        Add Project
-    </a>
-    <div class="form-container">
-        <form class="frm hidden" asp-controller="Project" asp-action="Create" method="POST">
-            <div class="form-group">
-                <label asp-for="@Model.Title"></label>
-                <input class="form-control" asp-for="@Model.Title" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="@Model.Description"></label>
-                <textarea class="form-control" asp-for="@Model.Description"></textarea>
-
-            </div>
-
-            <input type="submit" value="Create" />
-        </form>
-    </div>
+	<button class="create-btn">Add Project</button>
 </div>
+<partial name="CreateForm" for="Project" />
+
 <div class="project-container">
-    @foreach (var project in Model)
-    {
-        <div class="project-card">
-            <div class="title-container">
-                <a asp-page="/Details/@project.Id" class="proj-title">@project.Title</a>
-                <p class="menu">...</p>
-            </div>
-            <a asp-page="/Details/@project.Id" class="proj-info">@project.Description</a>
+	@foreach (var project in Model.Projects)
+	{
+		<div class="project-card">
+			<div class="title-container">
+				<a asp-page="/Details/@project.Id" class="proj-title">@project.Title</a>
+				<button class="menu" id="@project.Id">...</button>
+			</div>
 
-            <div class="date-count-container">
-                <a asp-page="/Details/@project.Id" class="proj-info">Create Date:</a>
-                <a asp-page="/Details/@project.Id" class="proj-info">@project.CreateDate.ToString("MM/dd/yy")</a>
-                &nbsp
-                &nbsp
-                <a asp-page="/Details/@project.Id" class="proj-info">Work Items:</a>
-                <a asp-page="/Details/@project.Id" class="proj-info">@project.WorkItems.Count</a>
-            </div>
-        </div>
-    }
+			<div class="menu-container hidden" id="menu-@project.Id">
+				<form asp-action="delete" asp-controller="project" method="post">
+					<input type="submit" class="menu-item delete" id="@project.Id" value="Delete">
+					<input type="hidden" name="id" value="@project.Id" />
+				</form>
+				<form asp-action="edit" asp-controller="project" method="post">
+					<input class="menu-item edit" id="@project.Id" value="Edit" type="submit">
+					<input type="hidden" name="id" value="@project.Id"/>
+				</form>
+				<form asp-action="track" asp-controller="project" method="post">
+					<input type="submit" class="menu-item track" id="@project.Id" value="Track">
+					<input type="hidden" name="id" value="@project.Id"/>
+				</form>
+			</div>
+
+			<a asp-page="/Details/@project.Id" class="proj-info">@project.Description</a>
+
+			<div class="date-count-container">
+				<a asp-page="/Details/@project.Id" class="proj-info">Create Date:</a>
+				<a asp-page="/Details/@project.Id" class="proj-info">@project.CreateDate.ToString("MM/dd/yy")</a>
+				&nbsp
+				&nbsp
+				<a asp-page="/Details/@project.Id" class="proj-info">Work Items:</a>
+				<a asp-page="/Details/@project.Id" class="proj-info">@project.WorkItems.Count</a>
+			</div>
+		</div>
+
+	}
 </div>
-
-
-@section Scripts{ 
-    <script type="text/javascript" src="~/js/menu.js"></script>
-}

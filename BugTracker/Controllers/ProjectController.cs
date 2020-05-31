@@ -1,6 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using BugTracker.Models;
+using BugTracker.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.Controllers
@@ -21,7 +25,11 @@ namespace BugTracker.Controllers
                 .Include(proj => proj.WorkItems)
                 .ToList();
 
-            return View(projects);
+            var projectsViewModel = new ProjectsViewModel();
+            projectsViewModel.Projects = projects;
+            projectsViewModel.Project = new Project();
+
+            return View(projectsViewModel);
         }
 
 
@@ -32,10 +40,29 @@ namespace BugTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Project project)
+        public async Task<IActionResult> Create(Project project)
         {
-            System.Console.WriteLine(project);
+            project.CreateDate = System.DateTime.Now;
 
+            context.Add(project);
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete()
+        {
+            string id = HttpContext.Request.Form["id"];
+
+            var projectToDelete = context
+                .Projects
+                .FirstOrDefault(x => x.Id == Convert.ToInt32(id));
+
+            if (projectToDelete != null)
+                context.Remove(projectToDelete);
+
+            await context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }

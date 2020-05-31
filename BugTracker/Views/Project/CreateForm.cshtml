@@ -1,0 +1,10 @@
+﻿
+<div class="form-container hidden" id="form-container">
+	@model Project
+	@using (Html.BeginForm("create", "project", FormMethod.Post, new { @class = "form" }))
+	{
+		@Html.TextBoxFor(x => x.Title, new { placeholder = "project title", @class = "title-textbox" })
+		@Html.TextAreaFor(x => x.Description, new { placeholder = "project description", @class = "descr-textarea" })
+		<input class="submit-btn" type="submit" value="Create" />
+	}
+</div>
